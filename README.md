@@ -14,6 +14,7 @@ Easiest way to understand the interface is to read it:
 declare script_name
 script_name="$(basename "${BASH_SOURCE[0]}")"
 
+# function to verify an external command is installed
 havecmd() {
 	local BINARY ERRMSG
 	# error if first argument isn't provided
