@@ -32,7 +32,7 @@ havecmd() {
 	fi
 }
 
-# If the first arguments isn't available on the users $PATH
+# If the first argument isn't available on the users $PATH
 # print an error and the second argument, if given
 # set the -e flag; exits if any of the dependencies aren't satisfied
 set -e
