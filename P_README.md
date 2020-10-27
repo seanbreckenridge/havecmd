@@ -12,4 +12,3 @@ perl -E 'print "`"x3, "shell", "\n"'
 cat ./template
 perl -E 'print "`"x3, "\n"'
 ```
-

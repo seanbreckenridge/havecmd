@@ -11,15 +11,15 @@ havecmd() {
 	# error if first argument isn't provided
 	BINARY="${1:?Must provide command to check}"
 	# the commend exists, exit with 0 (success!)
-	if command -v "$BINARY" >/dev/null 2>&1; then
+	if command -v "${BINARY}" >/dev/null 2>&1; then
 		return 0
 	else
 		# construct error message
-		ERRMSG="'$script_name' requires '$BINARY', could not find that on your \$PATH"
-		if [[ -n "$2" ]]; then
-			ERRMSG="$ERRMSG. $2"
+		ERRMSG="'${script_name}' requires '${BINARY}', could not find that on your \${PATH}"
+		if [[ -n "${2}" ]]; then
+			ERRMSG="${ERRMSG}. ${2}"
 		fi
-		printf '%s\n' "$ERRMSG" 1>&2
+		printf '%s\n' "${ERRMSG}" 1>&2
 		return 1
 	fi
 } && export -f havecmd
@@ -47,13 +47,13 @@ set +e
 # if havecmd realpath; then
 # 	this_dir="$(realpath "$this_dir")"
 # fi
-# cd "$this_dir" || {
+# cd "${this_dir}" || {
 # 	echo "Couldn't 'cd' to '$this_dir'" 1>&2
 # 	exit 1
 # }
 
 main() {
-	echo "ran '$script_name' with arguments '$*'"
+	echo "ran '${script_name}' with arguments '$*'"
 	return 0
 }
 
