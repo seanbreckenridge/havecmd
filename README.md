@@ -41,7 +41,7 @@ set -e
 # Examples
 havecmd python
 havecmd fd 'See installation instructions at https://github.com/sharkdp/fd'
-havecmd wait-for-internet "Install it with 'cargo install --git https://gitlab.com/seanbreckenridge/wait-for-internet'"
+havecmd wait-for-internet "Install it with 'cargo install --git https://github.com/seanbreckenridge/wait-for-internet'"
 havecmd pmark 'Install by running "sh <(curl -sSL http://git.io/sinister) -u https://raw.githubusercontent.com/seanbreckenridge/pmark/master/pmark"'
 set +e
 
