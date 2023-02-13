@@ -7,7 +7,7 @@ This isn't a dependency, because the whole point of this script is to check for 
 Easiest way to understand the interface is to read it:
 
 ```shell
-#!/bin/bash
+#!/usr/bin/env bash
 # Template from https://github.com/seanbreckenridge/havecmd
 
 # get the name of this script
@@ -25,9 +25,7 @@ havecmd() {
 	else
 		# construct error message
 		ERRMSG="'${script_name}' requires '${BINARY}', could not find that on your \$PATH"
-		if [[ -n "$2" ]]; then
-			ERRMSG="${ERRMSG}. $2"
-		fi
+		[[ -n "$2" ]] && ERRMSG="${ERRMSG}. $2"
 		printf '%s\n' "${ERRMSG}" 1>&2
 		return 1
 	fi
