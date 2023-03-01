@@ -8,9 +8,8 @@ script_name="$(basename "${BASH_SOURCE[0]}")"
 # function to verify an external command is installed
 havecmd() {
 	local BINARY ERRMSG
-	# error if first argument isn't provided
 	BINARY="${1:?Must provide command to check}"
-	# the commend exists, exit with 0 (success!)
+	# the command is on the users $PATH, exit with success
 	if command -v "${BINARY}" >/dev/null 2>&1; then
 		return 0
 	else
@@ -21,11 +20,12 @@ havecmd() {
 		return 1
 	fi
 } && export -f havecmd
-# exported the function, is defined in any other bash scripts this calls
+# export the function, it is defined in any other bash scripts this calls
 
 # If the first argument isn't available on the users $PATH
-# print an error and the second argument, if given
-# set the -e flag; exits if any of the dependencies aren't satisfied
+# print an error and the second argument (installation instructions), if given
+
+# set the -e flag; this script exits if any of the dependencies aren't satisfied
 set -e
 # Examples
 havecmd python
@@ -34,26 +34,11 @@ havecmd wait-for-internet "Install it with 'cargo install --git https://github.c
 havecmd pmark 'Install by running "sh <(curl -sSL http://git.io/sinister) -u https://raw.githubusercontent.com/seanbreckenridge/pmark/master/pmark"'
 set +e
 
-# I commonly have scripts that use files relative to the script itself.
-# If thats the case, this part of the script handles changing the
-# current directory to the same as the scripts'
-#
-# uncomment this part to 'cd' to the directory that this script is in
-
-# declare this_dir
-# this_dir="$(dirname "${BASH_SOURCE[0]}")"
-# if havecmd realpath; then
-# 	this_dir="$(realpath "$this_dir")"
-# fi
-# cd "${this_dir}" || {
-# 	echo "Couldn't 'cd' to '$this_dir'" 1>&2
-# 	exit 1
-# }
+# at this point, all dependencies are satisfied
 
 main() {
 	echo "ran '${script_name}' with arguments '$*'"
 	return 0
 }
 
-# exit code of the main function is the exit code of the entire script
 main "$@" || exit $?
